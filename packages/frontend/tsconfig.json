@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "react",
+    "rootDir": "./src",
+    "incremental": true,
+    "lib": ["DOM", "ES5", "ES2015.Collection", "ES2019.Array"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "$src/*": ["src/*"],
+      "$generated/*": ["generated/*"]
+    }
+  }
+}

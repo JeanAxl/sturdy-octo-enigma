@@ -1,0 +1,14 @@
+{
+  "name": "mws",
+  "version": "1.0.0",
+  "description": "Sandbox for yarn, ts ans stuff :3",
+  "main": "index.js",
+  "author": "JeanJean",
+  "license": "MIT",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "start": "yarn backend start",
+    "backend": "yarn workspace @mws/backend"
+  }
+}
