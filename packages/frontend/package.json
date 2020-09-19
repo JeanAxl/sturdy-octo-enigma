@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "jest --watchAll"
+    "test": "jest --runInBand",
+    "test:cov": "jest --runInBand --coverage",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "react": "^16.13.1",

@@ -10,6 +10,7 @@
     "packages/*"
   ],
   "scripts": {
+    "test": "yarn test:frontend",
     "start:frontend": "yarn frontend start",
     "test:frontend": "yarn frontend test",
     "frontend": "yarn workspace @mws/frontend"

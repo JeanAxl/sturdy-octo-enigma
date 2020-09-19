@@ -1,0 +1,32 @@
+version: 2.1
+
+commands:
+  install_js:
+    steps:
+      - run:
+          name: View install environment
+          command: |
+            node --version
+            yarn --version
+      - restore_cache:
+          keys:
+            - v2-yarn-sha-{{ checksum "yarn.lock" }}
+            - v2-yarn-sha-
+      - run:
+          name: Install js dependencies
+          command: yarn
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: ls
+      - install_js
+      - run: yarn test
+
+workflows:
+  front-tests:
+    jobs:
+      - test
