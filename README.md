@@ -1,7 +1,8 @@
 # Typescript sandbox
 
 ## Repository setup
-* Yarn workspaces
+
+- Yarn workspaces
 
 ##### TODO
 
@@ -9,9 +10,16 @@
 - [ ] Versioning
 
 ## Frontend setup
-* React
-* Styled components
-* Basic webpack
+
+- React
+- Styled components
+- Basic webpack
+
+##### State management
+
+- Kita
+- Recoil
+- Mobx
 
 ##### TODO
 

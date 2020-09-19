@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { join } = require("path");
-const HtmlPlugin = require("html-webpack-plugin");
-const createStyledComponentsTransformer = require("typescript-plugin-styled-components")
-  .default;
+const { join } = require('path');
+const HtmlPlugin = require('html-webpack-plugin');
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 
 const styledComponentsTransformer = createStyledComponentsTransformer();
 
@@ -10,12 +9,12 @@ const styledComponentsTransformer = createStyledComponentsTransformer();
  * @type {import('webpack').ConfigurationFactory}
  */
 module.exports = (env, argv) => {
-  const PROD_MODE = argv.mode === "production";
+  const PROD_MODE = argv.mode === 'production';
 
-  const ROOT = join(__dirname, ".");
-  const SOURCE_FOLDER = join(ROOT, "src");
-  const GENERATED_FOLDER = join(ROOT, "generated");
-  const DIST_FOLDER = join(ROOT, env ? `dist-${env}` : "dist");
+  const ROOT = join(__dirname, '.');
+  const SOURCE_FOLDER = join(ROOT, 'src');
+  const GENERATED_FOLDER = join(ROOT, 'generated');
+  const DIST_FOLDER = join(ROOT, env ? `dist-${env}` : 'dist');
 
   const TYPE_CHECK = PROD_MODE || argv.typecheck === true;
 
@@ -27,11 +26,11 @@ module.exports = (env, argv) => {
       historyApiFallback: true,
     },
     context: SOURCE_FOLDER,
-    entry: [join(SOURCE_FOLDER, "index.tsx")],
+    entry: [join(SOURCE_FOLDER, 'index.ts')],
     output: {
       path: DIST_FOLDER,
-      filename: "main.[hash].js",
-      publicPath: "/",
+      filename: 'main.[hash].js',
+      publicPath: '/',
     },
     module: {
       rules: [
@@ -39,7 +38,7 @@ module.exports = (env, argv) => {
           test: /\.tsx?$/,
           use: [
             {
-              loader: "ts-loader",
+              loader: 'ts-loader',
               options: {
                 transpileOnly: !TYPE_CHECK,
                 getCustomTransformers: () => ({
@@ -56,11 +55,11 @@ module.exports = (env, argv) => {
         $src: SOURCE_FOLDER,
         $generated: GENERATED_FOLDER,
       },
-      extensions: [".ts", ".tsx", ".js", ".json"],
+      extensions: ['.ts', '.tsx', '.js', '.json'],
     },
     plugins: [
       new HtmlPlugin({
-        template: join(ROOT, "public/index.html"),
+        template: join(ROOT, 'public/index.html'),
       }),
     ],
   };

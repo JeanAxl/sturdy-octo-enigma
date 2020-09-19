@@ -1,10 +1,13 @@
-import { render } from "react-dom";
-import React from "react";
-import { Greetings } from "$src/Greetings";
+import { render } from 'react-dom';
+import React from 'react';
+
+import App from '$src/app';
+import { GlobalStyle } from './style';
 
 render(
-  <div>
-    <Greetings />
-  </div>,
-  document.getElementById("root")
+  <React.Fragment>
+    <GlobalStyle />
+    <App />
+  </React.Fragment>,
+  document.getElementById('root'),
 );
