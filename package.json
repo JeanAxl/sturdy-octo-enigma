@@ -6,9 +6,12 @@
   "author": "JeanJean",
   "license": "MIT",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "start": "yarn backend start",
-    "backend": "yarn workspace @mws/backend"
+    "start:frontend": "yarn frontend start",
+    "test:frontend": "yarn frontend test",
+    "frontend": "yarn workspace @mws/frontend"
   }
 }

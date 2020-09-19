@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Input from '$src/components/shared/input';
 import Label from '$src/components/shared/label';
@@ -11,12 +11,10 @@ const Div = styled.div`
 
 const SummaryInput = () => {
   return (
-    <Fragment>
-      <Div>
-        <Label label={'summary'} htmlFor="summary" />
-        <Input id={'summary'} name={'summary'} placeholder={''} type={'text'} />
-      </Div>
-    </Fragment>
+    <Div>
+      <Label label={'summary'} htmlFor="summary" />
+      <Input id={'summary'} name={'summary'} />
+    </Div>
   );
 };
 
