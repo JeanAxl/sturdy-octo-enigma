@@ -1,7 +1,13 @@
 version: 2.1
 
+executors:
+  my-executor:
+    docker:
+      - image: circleci/node:10
+    working_directory: /tmp
+
 commands:
-  install_js:
+  install_deps:
     steps:
       - run:
           name: View install environment
@@ -17,16 +23,38 @@ commands:
           command: yarn
 
 jobs:
-  test:
-    docker:
-      - image: circleci/node:10
+  install:
+    executor: my-executor
     steps:
-      - checkout
-      - run: ls
-      - install_js
-      - run: yarn test
+      - run: mkdir -p workspace
+      - checkout:
+          path: /tmp/workspace
+      - install_deps
+      - run: echo install
+      - run: name
+      - persist_to_workspace:
+          root: workspace
+          paths:
+            - node_modules
+  lint:
+    executor: my-executor
+    steps:
+      - attach_workspace:
+          at: /myspace/workspace
+      - run: echo lint
+      - run: ls -la
+  test:
+    executor: my-executor
+    steps:
+      - run: echo test
 
 workflows:
-  front-tests:
+  workflow:
     jobs:
-      - test
+      - install
+      - lint:
+          requires:
+            - install
+      - test:
+          requires:
+            - install

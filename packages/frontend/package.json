@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
+    "lint": "eslint . --max-warnings=120",
     "test": "jest --runInBand",
     "test:cov": "jest --runInBand --coverage",
     "test:watch": "jest --watch"
