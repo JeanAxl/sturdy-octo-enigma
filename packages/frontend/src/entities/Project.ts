@@ -1,7 +1,9 @@
 export class Project {
+  public id: number;
   public name: string;
 
-  constructor(name: string) {
-    this.name = name;
+  constructor(x: { name: string }) {
+    this.name = x.name;
+    this.id = new Date().getTime();
   }
 }

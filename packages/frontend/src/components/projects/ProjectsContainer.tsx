@@ -1,11 +1,10 @@
 import React from 'react';
 
-import { Projects, ProjectView } from '$src/components/projects/Projects';
-
-const getProjects = (): Array<ProjectView> => [];
+import { Projects } from '$src/components/projects/Projects';
+import { useProjects } from '$src/contexts/projects';
 
 const ProjectsContainer = () => {
-  const projects = getProjects();
+  const { projects } = useProjects();
 
   return <Projects projects={projects} />;
 };

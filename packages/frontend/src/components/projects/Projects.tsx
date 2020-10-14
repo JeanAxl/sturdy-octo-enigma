@@ -2,7 +2,7 @@ import React from 'react';
 
 export type ProjectView = {
   name: string;
-  id: string;
+  id: number;
 };
 
 type ProjectsProps = {

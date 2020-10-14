@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { ProjectsContainer } from '$src/components/projects/ProjectsContainer';
 import { AddProjectContainer } from '$src/components/add-project/AddProjectContainer';
+import { ProjectsContextProvider } from '$src/contexts/projects';
 
 const Div = styled.div`
   display: flex;
@@ -11,8 +12,10 @@ const Div = styled.div`
 
 const App = () => (
   <Div>
-    <ProjectsContainer />
-    <AddProjectContainer />
+    <ProjectsContextProvider>
+      <ProjectsContainer />
+      <AddProjectContainer />
+    </ProjectsContextProvider>
   </Div>
 );
 
