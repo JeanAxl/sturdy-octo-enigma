@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SummaryInput from '$src/components/summary-input';
-import Summary from '$src/components/summary/Summary';
+import { ProjectsContainer } from '$src/components/projects/ProjectsContainer';
+import { AddProjectContainer } from '$src/components/add-project/AddProjectContainer';
 
 const Div = styled.div`
   display: flex;
@@ -11,8 +11,8 @@ const Div = styled.div`
 
 const App = () => (
   <Div>
-    <SummaryInput />
-    <Summary summary={'Hello'} />
+    <ProjectsContainer />
+    <AddProjectContainer />
   </Div>
 );
 
