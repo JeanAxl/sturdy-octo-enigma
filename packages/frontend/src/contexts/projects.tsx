@@ -18,10 +18,13 @@ const Provider = context.Provider;
 const ProjectsContextProvider = ({ children }: Props) => {
   const [projects, setProject] = useState<Array<ProjectView>>([]);
 
-  const addProject = (project: ProjectWrite) => {
-    const newProject = new Project(project);
-    setProject([...projects, newProject]);
-  };
+  const addProject = useCallback(
+    (project: ProjectWrite) => {
+      const newProject = new Project(project);
+      setProject([...projects, newProject]);
+    },
+    [projects],
+  );
 
   return <Provider value={{ projects, addProject }}>{children}</Provider>;
 };
