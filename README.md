@@ -1,35 +1,23 @@
-# Typescript sandbox
+#### CA implementation
 
-## Repository setup
+Basic context for state management  
+View and Write types
 
-- Yarn workspaces
+##### Business
 
-##### TODO
+Display a list of project  
+Add project
 
-- [ ] CI
-- [ ] Versioning
+Project should be unique by name.  
+Name is mandatory.
 
-## Frontend setup
+##### Next steps
 
-- React
-- Styled components
-- Basic webpack
+* Identify and split all layers
+* Redux
+* Other web view
+* Data fetching and remote state
 
-##### State management
+##### Comments
 
-- Kita
-- Recoil
-- Mobx
-
-##### TODO
-
-- [ ] Testing
-- [ ] State Management
-- [ ] Clean Architecture
-
-## Backend setup
-
-##### TODO
-
-- [ ] Testing
-- [ ] Clean Architecture
+* use hook to inject presenters and interactors

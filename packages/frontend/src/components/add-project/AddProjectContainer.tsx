@@ -13,7 +13,6 @@ const AddProjectContainer = () => {
     addProject(project);
   };
 
-  // TODO  : use hook to inject presenters and interactors
   // TODO : find way to have a pure function
   return <AddProject name={name} setName={setName} handleAddProjectClick={() => handleAddProjectClick({ name })} />;
 };
