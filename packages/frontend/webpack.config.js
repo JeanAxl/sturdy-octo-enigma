@@ -26,7 +26,7 @@ module.exports = (env, argv) => {
       historyApiFallback: true,
     },
     context: SOURCE_FOLDER,
-    entry: [join(SOURCE_FOLDER, 'index.tsx')],
+    entry: [join(SOURCE_FOLDER, 'frameworks/index.tsx')],
     output: {
       path: DIST_FOLDER,
       filename: 'main.[hash].js',
