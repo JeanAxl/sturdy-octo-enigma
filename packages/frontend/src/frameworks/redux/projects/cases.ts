@@ -1,19 +1,16 @@
-import { Project } from '$src/domain/entities/Project';
 import { ProjectsStateType } from '$src/frameworks/redux/projects/index';
 import { ProjectsActionTypes } from '$src/frameworks/redux/projects/actions';
-import { getByName } from './selectors';
+import { AddProjectUseCase, ProjectsRepository } from '$src/domain/use-cases/add-project/AddProject';
 
 const addProject = (state: ProjectsStateType, action: ProjectsActionTypes): ProjectsStateType => {
   const { payload } = action;
 
-  const newProject = new Project(payload);
+  const projectsRepository = new ProjectsRepository(state);
+  const addProjectUseCase = new AddProjectUseCase(projectsRepository);
 
-  const similarProject = getByName(state, newProject.name);
-  if (similarProject) {
-    return state;
-  }
+  const updatedProjects = addProjectUseCase.execute(payload);
 
-  return [...state, { ...newProject }];
+  return [...updatedProjects];
 };
 
 export { addProject };

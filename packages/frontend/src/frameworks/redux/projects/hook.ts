@@ -6,6 +6,7 @@ import { getAll } from '$src/frameworks/redux/projects/selectors';
 
 const useProjects = () => {
   const dispatch = useDispatch();
+
   const addProject = (params: IProjectData) => dispatch(addProjectActionCreator(params));
   const getProjects = () => useSelector((state: RootState) => getAll(state.projects));
 

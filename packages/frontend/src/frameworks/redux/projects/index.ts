@@ -1,4 +1,4 @@
-import { IProjectEntity, Project } from '$src/domain/entities/Project';
+import { IProjectEntity } from '$src/domain/entities/Project';
 import { ADD_PROJECT, ProjectsActionTypes } from '$src/frameworks/redux/projects/actions';
 import { addProject } from '$src/frameworks/redux/projects/cases';
 

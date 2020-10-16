@@ -1,39 +1,30 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { Project } from '$src/domain/entities';
 import { IProjectData, IProjectEntity } from '$src/domain/entities/Project';
+import { AddProjectUseCase, ProjectsRepository } from '$src/domain/use-cases/add-project/AddProject';
 
 type ContextType = {
   addProject: (project: IProjectData) => void;
   getProjects: () => Array<IProjectEntity>;
 };
 
-type Props = {
+interface Props {
   children: React.ReactNode;
-};
+}
 
 const context = React.createContext<ContextType>({ getProjects: () => [], addProject: () => ({}) });
 const Provider = context.Provider;
 
-const ProjectsContextProvider = ({ children }: Props) => {
-  const [projects, setProject] = useState<Array<IProjectEntity>>([]);
-
-  const getByName = (projects: Array<IProjectEntity>, nameToFind: string) => {
-    const found = projects.find((project) => project.name === nameToFind);
-
-    if (found) {
-      return new Project(found);
-    }
-
-    return null;
-  };
+const ProjectsContextProvider: React.FC<Props> = ({ children }: Props) => {
+  const [projects, setProjects] = useState<Array<IProjectEntity>>([]);
 
   const addProject = useCallback(
     (project: IProjectData) => {
-      const newProject = new Project(project);
-      const similarProject = getByName(projects, newProject.name);
-      if (!similarProject) {
-        setProject([...projects, { ...newProject }]);
-      }
+      const projectsRepository = new ProjectsRepository(projects);
+      const addProjectUseCase = new AddProjectUseCase(projectsRepository);
+
+      const updatedProjects = addProjectUseCase.execute(project);
+
+      setProjects(updatedProjects);
     },
     [projects],
   );
