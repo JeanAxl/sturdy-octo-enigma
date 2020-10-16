@@ -1,6 +1,7 @@
 import { ProjectsStateType } from '$src/frameworks/redux/projects/index';
 import { ProjectsActionTypes } from '$src/frameworks/redux/projects/actions';
-import { AddProjectUseCase, ProjectsRepository } from '$src/domain/use-cases/add-project/AddProject';
+import { AddProjectUseCase } from '$src/domain/use-cases/add-project/AddProject';
+import { ProjectsRepository } from '$src/repositories';
 
 const addProject = (state: ProjectsStateType, action: ProjectsActionTypes): ProjectsStateType => {
   const { payload } = action;

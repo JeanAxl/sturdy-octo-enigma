@@ -6,10 +6,10 @@ export type ProjectView = {
 };
 
 type ProjectsProps = {
-  projects: Array<ProjectView>;
+  projects: ProjectView[];
 };
 
-const Projects = ({ projects }: ProjectsProps) => {
+const Projects: React.FC<ProjectsProps> = ({ projects }: ProjectsProps) => {
   return (
     <div>
       {projects.map((project) => (

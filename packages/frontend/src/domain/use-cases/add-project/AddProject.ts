@@ -8,9 +8,10 @@ class AddProjectUseCase {
     this.projectsRepository = projectsRepository;
   }
 
-  execute(params: IProjectData): Array<Project> {
+  execute(params: IProjectData): Project[] {
     let updatedProjects = this.projectsRepository.getAll();
     const newProject = new Project(params);
+
     const withSameName = this.projectsRepository.findByName(newProject.name);
 
     if (!withSameName) {

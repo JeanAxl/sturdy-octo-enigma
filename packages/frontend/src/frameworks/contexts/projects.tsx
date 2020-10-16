@@ -1,10 +1,11 @@
 import React, { useCallback, useContext, useState } from 'react';
 import { IProjectData, IProjectEntity } from '$src/domain/entities/Project';
-import { AddProjectUseCase, ProjectsRepository } from '$src/domain/use-cases/add-project/AddProject';
+import { AddProjectUseCase } from '$src/domain/use-cases/add-project/AddProject';
+import { ProjectsRepository } from '$src/repositories';
 
 type ContextType = {
   addProject: (project: IProjectData) => void;
-  getProjects: () => Array<IProjectEntity>;
+  getProjects: () => IProjectEntity[];
 };
 
 type Props = {
@@ -15,7 +16,7 @@ const context = React.createContext<ContextType>({ getProjects: () => [], addPro
 const Provider = context.Provider;
 
 const ProjectsContextProvider: React.FC<Props> = ({ children }: Props) => {
-  const [projects, setProjects] = useState<Array<IProjectEntity>>([]);
+  const [projects, setProjects] = useState<IProjectEntity[]>([]);
 
   const addProject = useCallback(
     (project: IProjectData) => {

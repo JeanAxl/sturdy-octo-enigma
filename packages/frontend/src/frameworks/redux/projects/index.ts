@@ -2,7 +2,7 @@ import { IProjectEntity } from '$src/domain/entities/Project';
 import { ADD_PROJECT, ProjectsActionTypes } from '$src/frameworks/redux/projects/actions';
 import { addProject } from '$src/frameworks/redux/projects/cases';
 
-type ProjectsStateType = Array<IProjectEntity>;
+type ProjectsStateType = IProjectEntity[];
 const initialState: ProjectsStateType = [];
 
 const projects = (state = initialState, action: ProjectsActionTypes) => {

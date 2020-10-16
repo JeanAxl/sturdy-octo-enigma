@@ -1,6 +1,4 @@
-interface IRepository<A> {
-  getAll: () => Array<A>;
+export interface IRepository<A> {
+  getAll: () => A[];
   findByName: (name: string) => A | null;
 }
-
-export { IRepository };
