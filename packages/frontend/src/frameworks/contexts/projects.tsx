@@ -7,9 +7,9 @@ type ContextType = {
   getProjects: () => Array<IProjectEntity>;
 };
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
+};
 
 const context = React.createContext<ContextType>({ getProjects: () => [], addProject: () => ({}) });
 const Provider = context.Provider;

@@ -1,31 +1,5 @@
 import { IProjectData, IProjectEntity, Project } from '$src/domain/entities/Project';
-
-interface IRepository<A> {
-  getAll: () => Array<A>;
-  findByName: (name: string) => A | null;
-}
-
-class ProjectsRepository implements IRepository<IProjectEntity> {
-  readonly state: Array<IProjectEntity>;
-
-  constructor(state: Array<IProjectEntity>) {
-    this.state = state;
-  }
-
-  getAll() {
-    return this.state.map((project) => new Project(project));
-  }
-
-  findByName(nameToFind: string) {
-    const found = this.state.find((project) => project.name === nameToFind);
-
-    if (found) {
-      return new Project(found);
-    }
-
-    return null;
-  }
-}
+import { IRepository } from '$src/repositories';
 
 class AddProjectUseCase {
   private projectsRepository: IRepository<IProjectEntity>;
@@ -47,4 +21,4 @@ class AddProjectUseCase {
   }
 }
 
-export { AddProjectUseCase, ProjectsRepository };
+export { AddProjectUseCase };
