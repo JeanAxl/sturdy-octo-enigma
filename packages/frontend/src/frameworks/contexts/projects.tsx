@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useState } from 'react';
-import { ProjectView } from '$src/frameworks/components/projects/Projects';
 import { Project } from '$src/domain/entities';
 import { IProjectData, IProjectEntity } from '$src/domain/entities/Project';
 

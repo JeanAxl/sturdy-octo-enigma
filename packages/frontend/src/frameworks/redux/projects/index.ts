@@ -1,14 +1,16 @@
 import { IProjectEntity, Project } from '$src/domain/entities/Project';
 import { ADD_PROJECT, ProjectsActionTypes } from '$src/frameworks/redux/projects/actions';
+import { addProject } from '$src/frameworks/redux/projects/cases';
 
-const initialState: Array<IProjectEntity> = [];
+type ProjectsStateType = Array<IProjectEntity>;
+const initialState: ProjectsStateType = [];
 
 const projects = (state = initialState, action: ProjectsActionTypes) => {
-  const { type, payload } = action;
+  const { type } = action;
 
   switch (type) {
     case ADD_PROJECT:
-      return [...state, new Project(payload)];
+      return addProject(state, action);
 
     default:
       return state;
@@ -16,3 +18,4 @@ const projects = (state = initialState, action: ProjectsActionTypes) => {
 };
 
 export default projects;
+export { ProjectsStateType };
