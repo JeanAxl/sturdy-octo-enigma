@@ -1,14 +1,20 @@
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProjectActionCreator } from '$src/state/projects/actions';
 import { RootState } from '$src/state';
+import { addProjectActionCreator } from '$src/state/projects/actions';
 import { getAll } from '$src/state/projects/selectors';
-import { ProjectData } from '$src/domain/entities/Project';
+import { Project, ProjectData } from '$src/domain/entities/Project';
 
-const useProjects = () => {
+type Type = {
+  getProjects: () => Project[];
+  addProject: (params: ProjectData) => void;
+};
+
+const useProjects = (): Type => {
   const dispatch = useDispatch();
 
-  const addProject = (params: ProjectData) => dispatch(addProjectActionCreator(params));
-  const getProjects = () => useSelector((state: RootState) => getAll(state.projects));
+  const addProject = useCallback((params: ProjectData) => dispatch(addProjectActionCreator(params)), []);
+  const getProjects = useCallback(() => useSelector((state: RootState) => getAll(state.projects)), []);
 
   return { getProjects, addProject };
 };

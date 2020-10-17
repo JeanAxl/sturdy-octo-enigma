@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ProjectsPage } from '$src/ui/pages';
+import { Provider } from 'react-redux';
+import store from '$src/state';
 
 const Div = styled.div`
   display: flex;
@@ -9,7 +11,9 @@ const Div = styled.div`
 
 const App: React.FC = () => (
   <Div>
-    <ProjectsPage />
+    <Provider store={store}>
+      <ProjectsPage />
+    </Provider>
   </Div>
 );
 

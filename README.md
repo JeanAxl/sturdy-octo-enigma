@@ -11,11 +11,10 @@ Add project
 Project should be unique by name.  
 Name is mandatory.
 
+Add local state attributes to global state
+
 ##### Next steps
 
-* Identify and split all layers
-* Redux
-* Other web view
 * Data fetching and remote state
 
 ##### Comments
