@@ -1,18 +1,18 @@
-import { IProjectData, IProjectEntity, Project } from '$src/domain/entities/Project';
-import { IRepository } from '$src/repositories';
+import { Project } from '$src/domain/entities';
+import { ProjectData, ProjectsState } from '$src/domain/entities/Project';
 
 class AddProjectUseCase {
-  private projectsRepository: IRepository<IProjectEntity>;
+  private projectsState: ProjectsState;
 
-  constructor(projectsRepository: IRepository<IProjectEntity>) {
-    this.projectsRepository = projectsRepository;
+  constructor(projectsState: ProjectsState) {
+    this.projectsState = projectsState;
   }
 
-  execute(params: IProjectData): Project[] {
-    let updatedProjects = this.projectsRepository.getAll();
+  execute(params: ProjectData): Project[] {
+    let updatedProjects = this.projectsState.getAll();
     const newProject = new Project(params);
 
-    const withSameName = this.projectsRepository.findByName(newProject.name);
+    const withSameName = this.projectsState.findByName(newProject.name);
 
     if (!withSameName) {
       updatedProjects = [...updatedProjects, { ...newProject }];
@@ -22,4 +22,9 @@ class AddProjectUseCase {
   }
 }
 
-export { AddProjectUseCase };
+const makeAddProjectUseCase = (projects: Project[]) => {
+  const projectsState = new ProjectsState(projects);
+  return new AddProjectUseCase(projectsState);
+};
+
+export { makeAddProjectUseCase };
