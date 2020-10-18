@@ -10,8 +10,11 @@
     "packages/*"
   ],
   "scripts": {
+    "test": "yarn test:frontend",
+    "lint": "yarn lint:frontend",
+    "frontend": "yarn workspace @mws/frontend",
     "start:frontend": "yarn frontend start",
     "test:frontend": "yarn frontend test",
-    "frontend": "yarn workspace @mws/frontend"
+    "lint:frontend": "yarn frontend lint"
   }
 }
