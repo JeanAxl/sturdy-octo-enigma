@@ -9,18 +9,19 @@ executors:
 commands:
   install_deps:
     steps:
-      - run:
-          name: View install environment
-          command: |
-            node --version
-            yarn --version
       - restore_cache:
+          path: /tmp/code
           keys:
             - v2-yarn-sha-{{ checksum "yarn.lock" }}
             - v2-yarn-sha-
       - run:
           name: Install js dependencies
           command: yarn
+          path: /tmp/code
+      - save_cache:
+          key: v2-yarn-sha-{{ checksum "yarn.lock" }}
+          paths:
+            - /tmp/code/node_modules
 
 jobs:
   install:
@@ -28,25 +29,32 @@ jobs:
     steps:
       - run: mkdir -p workspace
       - checkout:
-          path: /tmp/workspace
+          path: /tmp/code
       - install_deps
-      - run: echo install
-      - run: name
       - persist_to_workspace:
-          root: workspace
+          root: /tmp/code
           paths:
             - node_modules
+            - packages
   lint:
     executor: my-executor
     steps:
+      - checkout:
+          path: /tmp/code
       - attach_workspace:
-          at: /myspace/workspace
-      - run: echo lint
-      - run: ls -la
+          at: /tmp/code
+      - run: ls code/packages/frontend
+      - run: cd code/ && yarn lint
+
   test:
     executor: my-executor
     steps:
-      - run: echo test
+      - checkout:
+          path: /tmp/code
+      - attach_workspace:
+          at: /tmp/code
+      - run: ls code/packages/frontend
+      - run: cd code/ && yarn test
 
 workflows:
   workflow:
